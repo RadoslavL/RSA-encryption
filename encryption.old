@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int gcd(int a, int b){
+   int i;
+   int out = -1;
+   for(i = 1; i <= a && i <= b; i++){
+      if(a % i == 0 && b % i == 0){
+         out = i;
+      }
+   }
+   return out;
+}
+
+int power(int number, int power){
+   int i;
+   int out = 1;
+   for(i = 0; i < power; i++){
+      out = out * number;
+   }
+   return out;
+}
+
+int main(){
+   double p = 3;
+   double q = 7;
+   double n = p * q;
+   double totient = (p - 1) * (q - 1); /// gcd(p - 1, q - 1);
+   double count;
+   double e = 2;
+   while(e < totient){
+      count = gcd((int)e, (int)totient);
+      if(count == 1){
+         break;
+      }else if(count == -1){
+         return 1;
+      }else{
+         e++;
+      }
+   }
+   double d;
+   double k = 2;
+   d = (1 + (k * totient)) / e;
+   double msg = 12;
+   double c = pow(msg, e);
+   double m = pow(c, d);
+   c = fmod(c, n);
+   m = fmod(m, n);
+   printf("%lf\n", c);
+   printf("%lf\n", m);
+   return 0;
+}
